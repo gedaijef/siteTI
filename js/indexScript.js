@@ -16,14 +16,20 @@ const criarProblema = problema => {
   var horario = dataHoraAtual.getHours() + ":" + dataHoraAtual.getMinutes() + ":" + dataHoraAtual.getSeconds();
   var mes = dataHoraAtual.getMonth()+1
   var data = dataHoraAtual.getDate() + "/" + mes + "/" + dataHoraAtual.getFullYear();
+  var msg = "chamado enviado pelo Site SuporteTI"
   
   //Criando a mensagem que será enviada á planilha
   const mensagem = {
     Sala: sala,
     Problema: problema,
     Hora: horario,
-    Data: data
+    Data: data,
+    Aviso: msg,
+    Mes:mes
   };
+
+  //https://sheetdb.io/api/v1/cyr1t1ykqlix8 - teste
+  //https://sheetdb.io/api/v1/s43vascv96nsa - oficial
 
   //Enviando a mensagem a planilha
   fetch("https://sheetdb.io/api/v1/s43vascv96nsa", //Link da planilha do sheetSB do google sheets 
@@ -46,7 +52,31 @@ const criarProblema = problema => {
     .catch(error => {
       console.error('Erro na solicitação:', error);
     });
-}
+
+
+//     fetch("https://sheetdb.io/api/v1/cyr1t1ykqlix8?sheet=Mes", //Link da planilha do sheetSB do google sheets 
+// { 
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify(mensagem_mes)
+// })
+
+// //Tratando possiveis erros
+//   .then(response => {
+//     if (response.ok) {
+//       console.log('Problema criado com sucesso!');
+//     } else {
+//       console.error('Erro ao criar o problema:', response.status);
+//     }
+//   })
+//   .catch(error => {
+//     console.error('Erro na solicitação:', error);
+//   });
+  }
+
+
 
 const contador = () => {
   let cont = 0;
